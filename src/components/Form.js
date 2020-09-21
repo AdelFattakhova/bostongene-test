@@ -2,38 +2,66 @@ import React from 'react';
 import IMask from 'imask';
 
 class Form extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            title: '',
+            content: '',
+            phone: '',
+            city: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange() {
+        this.setState(
+            {
+                title: document.getElementById('title-input').value,
+                content: document.getElementById('content-input').value,
+                phone: document.getElementById('phone-input').value,
+                city: document.getElementById('city-select').value
+            }
+        )
+    }
+
     render() {
         window.addEventListener('DOMContentLoaded', () => {
             const phoneInput = document.getElementById('phone-input');
-            console.log(phoneInput);
-            let phoneMask = IMask( phoneInput,
+
+            IMask(phoneInput,
                 {
                     mask: '+{7} (000) 000-00-00'
                 });
         });
+
         return (
-            <form className='form'>
-                <h2>Добавьте новое объявление:</h2>
-                <label className='form__label' htmlFor='title-input'>Заголовок:</label>
-                <input className='form__title-input' id='title-input' type='text' maxLength='140' required/>
-                <label className='form__label' htmlFor='content-input'>Текст объявления:</label>
-                <textarea className='form__content-input' id='content-input' maxLength='300'/>
-                <label className='form__label' htmlFor='phone-input'>Телефон:</label>
-                <input className='form__phone-input' id='phone-input' type='tel' placeholder='+7 (___) ___-__-__'
+            <form className='form' id='form' onChange={this.handleChange}
+                  onSubmit={(e) => {
+                      e.preventDefault();
+                      this.props.saveNewPosting(this.state.title, this.state.content,
+                          this.state.phone, this.state.city);
+                  }}>
+                <h2 className='form__title'>Добавьте новое объявление:</h2>
+                <label className='form__label form__label_req' htmlFor='title-input'>Заголовок: (макс. 140 символов)</label>
+                <input className='form__input' id='title-input' type='text' maxLength='140' required/>
+                <label className='form__label' htmlFor='content-input'>Текст объявления: (макс. 300 символов)</label>
+                <textarea className='form__textarea' id='content-input' maxLength='300'/>
+                <label className='form__label form__label_req' htmlFor='phone-input'>Телефон:</label>
+                <input className='form__input' id='phone-input' type='tel' placeholder='+7 (___) ___-__-__'
                        required/>
                 <label className='form__label' htmlFor='city-select'>Город:</label>
-                <select className='form__city-select' id='city-select'>
-                    <option className='form__city-option' disabled selected>Выберите город из списка</option>
+                <select className='form__select' id='city-select' defaultValue=''>
+                    <option className='form__city-option' disabled> </option>
                     <option className='form__city-option'>Москва</option>
                     <option className='form__city-option'>Санкт-Петербург</option>
                     <option className='form__city-option'>Казань</option>
                     <option className='form__city-option'>Нижний Новгород</option>
                 </select>
-                <button className='form__submit-btn' type='submit'>Сохранить</button>
+                <button className='form__submit-btn' type='submit'>Сохранить
+                </button>
             </form>
         )
     }
-
 }
 
 export default Form
