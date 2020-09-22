@@ -154,3 +154,7 @@ ul {
 .form__submit-btn {
     background-color: #2d3033;
 }
+
+.form__error {
+    color: #aa4b41;
+}
