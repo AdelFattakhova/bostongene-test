@@ -34,7 +34,7 @@ export function deleteData(id) {
         }
     }
 
-    for (let j = lastIndex; j < postingsData.length; j++) {
+    for (let j = lastIndex - 1; j >= 0; j--) {
         postingsData[j].id--;
     }
 
