@@ -13,6 +13,8 @@ class PostingsList extends React.Component {
 
         return (
             <ul className='postings'>
+                <li className='postings__welcome'
+                style={{display: postings.length > 0 ? 'none' : 'inline'}}>У Вас нет объявлений</li>
                 {postings}
             </ul>
         )

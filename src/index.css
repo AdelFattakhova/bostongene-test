@@ -20,6 +20,12 @@ ul {
     color: #2d3033;
 }
 
+.posting__city,
+.posting__phone,
+.posting__content {
+    margin-top: 5px;
+}
+
 .form__input,
 .form__textarea,
 .form__select {
@@ -41,9 +47,10 @@ ul {
 }
 
 .header {
-    padding: 15px 60px;
+    padding: 10px;
     background-color: #335252;
     color: #fff;
+    text-align: center;
 }
 
 .header__title {
@@ -64,9 +71,8 @@ ul {
     width: 60%;
 }
 
-.postings__item {
-    display: flex;
-    flex-direction: column;
+.postings__welcome {
+    font-size: 23px;
 }
 
 .posting {
@@ -87,12 +93,6 @@ ul {
 
 .posting__delete-btn {
     background-color: #aa4b41;
-}
-
-.posting__city,
-.posting__phone,
-.posting__content {
-    margin-top: 5px;
 }
 
 .posting__phone {
@@ -141,6 +141,10 @@ ul {
     width: 100%;
     height: 100px;
     resize: none;
+}
+
+.form__select {
+    cursor: pointer;
 }
 
 .form__label_req::after {
